@@ -65,26 +65,27 @@ pip install -r requirements.txt
 ```
 
 ## 📊 Dataset Structure
+
 Datasets follow a multi-style folder format:
+
 datasets/
-    train_dataset/
-        multi_stain_colorectum/
-            trainA/
-                Style_1/
-                Style_2/
-                Style_3/
-                ...
-            trainB/
-                Style_1/
-                Style_2/
-                Style_3/
+- train_dataset/
+  - multi_stain_colorectum/
+    - trainA/
+      - Style_1/
+      - Style_2/
+      - Style_3/
+    - trainB/
+      - Style_1/
+      - Style_2/
+      - Style_3/
 
 Where:
-Folder	Meaning
-Style_1	reference stain (e.g., H&E)
-Style_2+	IHC or special stains
 
-Each style corresponds to a RGB image.
+| Folder | Meaning                         |
+|--------|---------------------------------|
+| trainA | input stain (e.g., H&E)     |
+| trainB | output (IHC or special stains)|
 
 # 🚀 Training
 
@@ -101,19 +102,13 @@ python train.py \
 ```
 Explanation:
 
-Parameter	Meaning
-num_style	number of stains
-input_nc	channels = 3 × num_style
-output_nc	channels = 3 × num_style
-Example: Breast multiplex IHC
-python train.py \
---dataroot datasets/train_dataset/multi_immunohistochemistry_breast \
---name multi_immunohistochemistry \
---model rainbow_gan \
---dataset_mode one2onestyle \
---num_style 4 \
---input_nc 12 \
---output_nc 12
+```markdown
+| Parameter | Meaning              | Value (example) |
+|-----------|----------------------|------------------|
+| `num_style` | number of stains   | 4                |
+| `input_nc`  | channels = 3 × num_style | 12           |
+| `output_nc` | channels = 3 × num_style | 12           |
+```
 
 # 🔬 Inference
 
